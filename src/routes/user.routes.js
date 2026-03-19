@@ -8,13 +8,13 @@ import {
 } from "../controllers/user.controller.js";
 
 import { authMiddleware } from "../middleware/authMiddleware.js";
-import { validateLogin } from "../middleware/validateLogin.js";
+import userValidation from "../validations/user.validation.js";
 
 const router = Router();
 
-router.post("/", validateLogin, createUser);
+router.post("/", userValidation.loginUser, createUser);
 router.get("/", authMiddleware, getUsers);
 router.patch("/", passwordChange);
-router.post("/login", validateLogin, loginUser);
+router.post("/login", userValidation.loginUser, loginUser);
 
 export default router;
